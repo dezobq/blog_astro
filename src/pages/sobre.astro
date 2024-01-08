@@ -1,5 +1,18 @@
 ---
+const tituloPagina = "Sobre Mim";
+const identidade = {
+  nome: "André",
+  pais: "Canadá",
+  ocupacao: "Desenvolvedor Web",
+  hobbies: ["Música", "Natureza"]
+  }
 
+const habilidades =  ["HTML", "CSS", "JavaScript", "React", "Astro", "Escrever Documentação"]; 
+
+const feliz = true;
+const terminado = false;
+const meta = 3;
+  
 ---
 
 <html lang="en">
@@ -7,22 +20,30 @@
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>About Me</title>
+		<title>{tituloPagina}</title>
 	</head>
 	<body>
     <a href="/">Início</a>
 <a href="/sobre/">Sobre</a>
 <a href="/blog/">Blog</a>
 
-
-<h1>Sobre Mim</h1>
+<h1>{tituloPagina}</h1>
 <h2>... e meu novo site Astro!</h2>
 		<h1>What do you need to know about me?</h1>
     <h2>Well...</h2>
-    <p>My name is Andre, a.k.a. Dezo, and I enjoy building things with code. I created this website to showcase some of my projects and share what I
-      learn along the way. When I'm not coding, you can find me playing guitar or spending time outdoors.</p>
-      <p>I'm always looking to collaborate on new projects and learn from others. If you have an idea you want to bring to life or
-      </p>
+    <p>Aque estão alguns fatos sobre mim: </p>
+      <ul>
+        <li>Meu nome é {identidade.nome}</li>
+        <li>Moro no {identidade.pais} e trabalho como {identidade.ocupacao}.</li>
+        {identidade.hobbies.length >= 2 &&
+        <li>Meus hobbies incluem {identidade.hobbies.join(', ')}, entre outros.</li>}
+      </ul>
+      <p>Minhas habilidades são:</p>
+      <ul>
+        {habilidades.map(skill => <li>{skill}</li>)}
+      </ul>
+      {feliz && <p>Estou muito feliz com meu novo site!</p>}
+      {!terminado && <p>Ainda tenho mais para aprender, mas estou no caminho certo.</p>}
+      {meta === 3 ? <p>Minha meta é terminar em 3 dias.</p>: <p>Minha meta não é em 3 dias.</p>}
   	</body>
 </html>
