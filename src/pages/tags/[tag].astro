@@ -4,8 +4,8 @@ import PostBlog from '../../components/PostBlog.astro';
 
 export async function getStaticPaths() {
   const todasPostagens = await Astro.glob('../posts/*.md');
-  const tagsUnicas = [...new Set(todasPostagens.map((post) => post.frontmatter.tags).flat())];
 
+  const tagsUnicas = [...new Set(todasPostagens.map((post) => post.frontmatter.tags).flat())];
 
   return tagsUnicas.map((tag) => {
     const postagensFiltradas = todasPostagens.filter((post) => post.frontmatter.tags.includes(tag));
@@ -18,9 +18,7 @@ export async function getStaticPaths() {
 
 const { tag } = Astro.params;
 const { posts } = Astro.props;
-
 ---
-
 <LayoutBase tituloPagina={tag}>
   <p>Postagens com a tag {tag}</p>
   <ul>

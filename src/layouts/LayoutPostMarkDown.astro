@@ -3,9 +3,37 @@ import LayoutBase from './LayoutBase.astro';
 const { frontmatter } = Astro.props;
 ---
 <LayoutBase tituloPagina={frontmatter.titulo}>
-<p>Publicado em :{frontmatter.dataPub.slice(0,10)}</p>
-<p><em>{frontmatter.descricao}</em></p>
-<p>Escrito por: {frontmatter.autor}</p>
-<img src={frontmatter.imagem.url} width="300" alt={frontmatter.imagem.alt} />
-<slot />
+  <p><em>{frontmatter.descricao}</em></p>
+  <p>{frontmatter.dataPub.slice(0,10)}</p>
+
+  <p>Escrito por: {frontmatter.autor}</p>
+
+  <img src={frontmatter.imagem.url} width="300" alt={frontmatter.imagem.alt} />
+
+  <div class="tags">
+    {frontmatter.tags.map((tag) => (
+      <p class="tag"><a href={`/tags/${tag}`}>{tag}</a></p>
+    ))}
+  </div>
+
+  <slot />
 </LayoutBase>
+<style>
+  a {
+    color: #00539F;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .tag {
+    margin: 0.25em;
+    border: dotted 1px #a1a1a1;
+    border-radius: .5em;
+    padding: .5em 1em;
+    font-size: 1.15em;
+    background-color: #F8FCFD;
+  }
+</style>
